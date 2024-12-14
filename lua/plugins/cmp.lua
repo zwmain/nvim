@@ -11,7 +11,7 @@ return {
                 build = "make install_jsregexp"
             }
         },
-        opts = function()
+        config = function()
             local has_words_before = function()
                 unpack = unpack or table.unpack
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -92,7 +92,14 @@ return {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({{name = "path"}},
                                              {{name = "cmdline"}}),
-                matching = {disallow_symbol_nonprefix_matching = false}
+                matching = {
+                    disallow_symbol_nonprefix_matching = false, -- 禁止非前缀匹配时的符号匹配
+                    disallow_fuzzy_matching = true, -- 是否禁止模糊匹配
+                    disallow_fullfuzzy_matching = true, -- 是否禁止完全模糊匹配
+                    disallow_partial_fuzzy_matching = true, -- 是否禁止部分模糊匹配
+                    disallow_partial_matching = true, -- 是否禁止部分匹配
+                    disallow_prefix_unmatching = false -- 是否禁止前缀不匹配
+                }
             })
 
             -- Set up lspconfig.
@@ -103,7 +110,7 @@ return {
         end
     }, {
         "stevearc/conform.nvim",
-        opts = function()
+        config = function()
             local conform = require("conform")
             conform.formatters = {
                 clang_format = {
