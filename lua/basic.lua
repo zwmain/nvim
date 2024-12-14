@@ -4,7 +4,7 @@ local global = vim.g
 
 -- Globol Settings --
 option.showmode = true
-option.backspace = { "indent", "eol", "start" }
+option.backspace = {"indent", "eol", "start"}
 option.tabstop = 4
 option.shiftwidth = 4
 option.expandtab = true
@@ -17,7 +17,7 @@ option.wildmenu = true
 option.hlsearch = false
 option.ignorecase = true
 option.smartcase = true
-option.completeopt = { "menuone", "noselect" }
+option.completeopt = {"menuone", "noselect"}
 option.cursorline = true
 option.termguicolors = true
 option.signcolumn = "yes"
@@ -28,7 +28,7 @@ option.backup = false
 option.updatetime = 50
 option.mouse = "a"
 option.undofile = true
-option.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
+option.undodir = vim.fn.expand("$HOME/.local/share/nvim/undo")
 option.exrc = true
 option.wrap = false
 option.splitright = true
@@ -38,5 +38,4 @@ buffer.fileenconding = "utf-8"
 
 -- Global Settings --
 global.mapleader = " "
-
 
