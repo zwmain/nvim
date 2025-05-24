@@ -1,8 +1,8 @@
 return {
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         dependencies = {
-            "neovim/nvim-lspconfig", "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig", "mason-org/mason.nvim",
             "j-hui/fidget.nvim", "folke/neoconf.nvim", "folke/neodev.nvim",
             "nvimdev/lspsaga.nvim"
         },
@@ -62,10 +62,6 @@ return {
             require("lspsaga").setup({})
             require("mason").setup({})
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            require("mason-lspconfig").setup({
-                ensure_installed = vim.tbl_keys(servers)
-            })
-
             for server, config in pairs(servers) do
                 require("lspconfig")[server].setup(
                     vim.tbl_deep_extend("keep", {
@@ -73,6 +69,10 @@ return {
                         capabilities = capabilities
                     }, config))
             end
+            require("mason-lspconfig").setup({
+                -- ensure_installed = vim.tbl_keys(servers)
+                automatic_enable = false
+            })
         end
     }
 }
