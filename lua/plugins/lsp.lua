@@ -61,6 +61,10 @@ return {
             require("fidget").setup({})
             require("lspsaga").setup({})
             require("mason").setup({})
+            require("mason-lspconfig").setup({
+                ensure_installed = vim.tbl_keys(servers),
+                automatic_enable = true
+            })
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             for server, config in pairs(servers) do
                 require("lspconfig")[server].setup(
@@ -69,10 +73,6 @@ return {
                         capabilities = capabilities
                     }, config))
             end
-            require("mason-lspconfig").setup({
-                -- ensure_installed = vim.tbl_keys(servers)
-                automatic_enable = false
-            })
         end
     }
 }
